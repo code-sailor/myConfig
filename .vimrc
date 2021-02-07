@@ -134,12 +134,10 @@ noremap N Nzz
 """""""""""""""""""""""""""""""""""""""""""""
 " Visual settings
 """""""""""""""""""""""""""""""""""""""""""""
+colorscheme desert
 
 " Enable syntax highlighting
 syntax on
-
-" Dark Background
-set background=dark
 
 " No line wraps
 set nowrap
@@ -155,17 +153,9 @@ set showmatch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tools
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" press F1 to fix indentation in whole file; overwrites marker 'q' position
-noremap <F1> mqggVG=`qzz
-inoremap <F1> <Esc>mqggVG=`qzza
-
 " press F3 to sort selection or paragraph
 vnoremap <F3> :sort i<CR>
 nnoremap <F3> Vip:sort i<CR>
-
-" Toggle Error-Window
-map <F4> :cw
 
 map <F5> :make run<CR>
 map <F6> :make all<CR>
@@ -173,26 +163,16 @@ map <F7> :make debug<CR>
 map <F8> :make test<CR>
 
 " redraw screen, also turn off search highlighting until the next search
-noremap <FF9> :nohl<CR><C-L>
+noremap <F9> :nohl<CR><C-L>
 
-" press F10 to turn the search results highlight off
-noremap <F10> :nohl<CR>
-inoremap <F10> <Esc>:nohl<CR>a
-
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
-
-" press F12 to toggle showing the non-printable charactes
-noremap <F12> :set list!<CR>
-inoremap <F12> <Esc>:set list!<CR>a
+" press F10 to toggle showing the non-printable charactes
+noremap <F10> :set list!<CR>
+inoremap <F10> <Esc>:set list!<CR>a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatic commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('autocmd')
-    " delete empty or whitespaces-only lines at the end of file
-    autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
-
     " replace groups of empty or whitespaces-only lines
     " with one empty line
     autocmd BufWritePre * :%s/\(\s*\n\)\{3,}/\r\r/ge

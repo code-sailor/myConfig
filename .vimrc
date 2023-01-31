@@ -1,24 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Directorys
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("win32")
-    let s:vim_files = $HOME.'/vimfiles'
-else
-    let s:vim_files = '~/.vim'
-endif
-
-let &backupdir = s:vim_files.'/backup/'
-let &directory = s:vim_files.'/directory/'
-let &undodir = s:vim_files.'/undo/'
-let &viewdir = s:vim_files.'/viewdir/'
-
-for d in [&backupdir, &directory, &undodir, &viewdir]
-    call mkdir(d, 'p')
-endfor
-
-set viminfofile = s:vim_files.'/viminfo'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable vi-compatibility
@@ -50,7 +30,29 @@ set visualbell
 " And reset the terminal code for the visual bell. => Do Nothing
 set t_vb=
 
+set shortmess=at
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Directorys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("win32")
+    let s:vim_files = $HOME.'/vimfiles'
+else
+    let s:vim_files = '~/.vim'
+endif
+
+let &backupdir = s:vim_files.'/backup/'
+let &directory = s:vim_files.'/directory/'
+let &undodir = s:vim_files.'/undo/'
+let &viewdir = s:vim_files.'/viewdir/'
+
+for d in [&backupdir, &directory, &undodir, &viewdir]
+    call mkdir(d, 'p')
+endfor
+
+let &viminfofile = s:vim_files.'/viminfo'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldenable

@@ -1,28 +1,22 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Directorys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if isdirectory($HOME . '/.vim') == 0
-    :silent !mkdir ~/.vim
+if has("win32")
+    let s:vim_files = $HOME.'/vimfiles'
+else
+    let s:vim_files = '~/.vim'
 endif
 
-if isdirectory($HOME . '/.vim/backup') == 0
-    :silent !mkdir ~/.vim/backup
-endif
-set backupdir=~/.vim/backup//
+let &backupdir = s:vim_files.'/backup/'
+let &directory = s:vim_files.'/directory/'
+let &undodir = s:vim_files.'/undo/'
+let &viewdir = s:vim_files.'/viewdir/'
 
-if isdirectory($HOME . '/.vim/swap') == 0
-    :silent !mkdir ~/.vim/swap
-endif
-set directory=~/.vim/swap//
+for d in [&backupdir, &directory, &undodir, &viewdir]
+    call mkdir(d, 'p')
+endfor
 
-if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir ~/.vim/undo
-endif
-set undodir=~/.vim/undo//
-
-if isdirectory($HOME . '/.vim') == 0
-    :silent !mkdir ~/.vim
-endif
+set viminfofile = s:vim_files.'/viminfo'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
